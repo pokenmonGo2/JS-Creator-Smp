@@ -1,339 +1,386 @@
-<!DOCTYPE html>
-<html lang="nl">
+<!DOCTYPE html><html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Players | My SMP</title>  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <title>Players | MY SMP</title>
+    body {
+      font-family: Arial, sans-serif;
+      background: #07110b;
+      color: white;
+      min-height: 100vh;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 7%;
+      background: rgba(5, 15, 9, 0.95);
+      border-bottom: 1px solid #183d23;
+      backdrop-filter: blur(10px);
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                linear-gradient(rgba(8,12,20,0.9), rgba(8,12,20,0.97)),
-                radial-gradient(circle at top, #263b52, #080c14 70%);
-            color: white;
-            min-height: 100vh;
-        }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #58e47b;
+    }
 
-        .navbar {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            background: rgba(8,12,20,0.9);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
+    nav a {
+      color: #b9c9be;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
+    nav a:hover {
+      color: #58e47b;
+    }
 
-        .logo span {
-            color: #63d471;
-        }
+    header {
+      text-align: center;
+      padding: 70px 20px 35px;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
+    header h1 {
+      font-size: clamp(38px, 8vw, 70px);
+      margin-bottom: 12px;
+    }
 
-        .nav-links a {
-            color: #aab5c5;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    header p {
+      color: #9caf9f;
+      font-size: 17px;
+    }
 
-        .nav-links a:hover {
-            color: #63d471;
-        }
+    .controls {
+      width: min(1100px, 90%);
+      margin: 10px auto 35px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 80px 0;
-        }
+    input,
+    select {
+      flex: 1;
+      min-width: 180px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid #244b2e;
+      background: #0d1c12;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 45px;
-        }
+    input:focus,
+    select:focus {
+      border-color: #58e47b;
+    }
 
-        .header small {
-            color: #63d471;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
+    .players {
+      width: min(1100px, 90%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+      padding-bottom: 60px;
+    }
 
-        .header h1 {
-            font-size: 48px;
-            margin: 10px 0;
-        }
+    .player {
+      background: linear-gradient(145deg, #0d1c12, #09150d);
+      border: 1px solid #1c4025;
+      border-radius: 18px;
+      padding: 24px;
+      transition: 0.25s;
+    }
 
-        .header p {
-            color: #8995a7;
-        }
+    .player:hover {
+      transform: translateY(-5px);
+      border-color: #58e47b;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
 
-        .players {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
+    .skin {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 18px;
+      border-radius: 14px;
+      background: #18291d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      border: 1px solid #315c3b;
+    }
 
-        .player {
-            background: rgba(255,255,255,0.045);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 25px;
-            transition: 0.2s;
-        }
+    .player h2 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
 
-        .player:hover {
-            transform: translateY(-4px);
-            border-color: rgba(99,212,113,0.4);
-        }
+    .team {
+      text-align: center;
+      color: #8fa995;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
 
-        .skin {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 18px;
-            border-radius: 12px;
-            background: #182332;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 45px;
-        }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
 
-        .player h2 {
-            text-align: center;
-            margin-bottom: 5px;
-        }
+    .stat {
+      background: #08130c;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
 
-        .status {
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-            color: #63d471;
-            margin-bottom: 20px;
-        }
+    .stat strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
+    .stat span {
+      color: #839488;
+      font-size: 12px;
+    }
 
-        .stat {
-            background: rgba(255,255,255,0.04);
-            padding: 12px;
-            border-radius: 9px;
-            text-align: center;
-        }
+    .status {
+      margin-top: 15px;
+      text-align: center;
+      padding: 8px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: bold;
+    }
 
-        .stat strong {
-            display: block;
-            font-size: 19px;
-        }
+    .alive {
+      background: rgba(45, 180, 82, 0.15);
+      color: #58e47b;
+    }
 
-        .stat span {
-            color: #788598;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
+    .dead {
+      background: rgba(220, 70, 70, 0.15);
+      color: #ff7777;
+    }
 
-        .team {
-            margin-top: 12px;
-            text-align: center;
-            color: #aab5c5;
-            font-size: 13px;
-        }
+    #noResults {
+      display: none;
+      text-align: center;
+      color: #89988d;
+      padding: 30px;
+      width: 100%;
+    }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #697586;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #183d23;
+      color: #718075;
+      font-size: 13px;
+    }
 
-        @media (max-width: 750px) {
+    @media (max-width: 600px) {
+      nav {
+        padding: 15px 5%;
+      }
 
-            .nav-links {
-                display: none;
-            }
+      nav div:last-child {
+        display: flex;
+        gap: 8px;
+      }
 
-            .navbar {
-                padding: 0 20px;
-            }
+      nav a {
+        margin-left: 5px;
+        font-size: 12px;
+      }
 
-            .container {
-                padding: 55px 0;
-            }
+      header {
+        padding-top: 50px;
+      }
 
-            .header h1 {
-                font-size: 38px;
-            }
+      .controls {
+        width: 90%;
+      }
 
-            .players {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
+      input,
+      select {
+        width: 100%;
+      }
+    }
+  </style></head><body>  <nav>
+    <div class="logo">MY SMP</div><div>
+  <a href="index.html">Home</a>
+  <a href="players.html">Players</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="lore.html">Lore</a>
+  <a href="map.html">Map</a>
+</div>
 
-<body>
+  </nav>  <header>
+    <h1>PLAYERS</h1>
+    <p>Bekijk alle spelers en hun SMP-statistieken.</p>
+  </header>  <section class="controls"><input
+  type="text"
+  id="search"
+  placeholder="🔎 Zoek een speler..."
+>
 
-<nav class="navbar">
+<select id="statusFilter">
+  <option value="all">Alle spelers</option>
+  <option value="alive">Alive</option>
+  <option value="dead">Dead</option>
+</select>
 
-    <div class="logo">
-        MY<span>SMP</span>
+<select id="teamFilter">
+  <option value="all">Alle teams</option>
+  <option value="north">North</option>
+  <option value="south">South</option>
+  <option value="solo">Solo</option>
+</select>
+
+  </section>  <section class="players" id="players"><div class="player" data-name="jorn" data-status="alive" data-team="north">
+  <div class="skin">🧑‍🌾</div>
+
+  <h2>Jorn</h2>
+  <div class="team">North</div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>18</strong>
+      <span>Kills</span>
     </div>
 
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="players.html">Players</a></li>
-        <li><a href="index.html#timeline">Timeline</a></li>
-    </ul>
+    <div class="stat">
+      <strong>4</strong>
+      <span>Deaths</span>
+    </div>
+  </div>
 
-</nav>
+  <div class="status alive">● ALIVE</div>
+</div>
 
 
-<main class="container">
+<div class="player" data-name="sem" data-status="alive" data-team="south">
+  <div class="skin">🧑‍🎤</div>
 
-    <div class="header">
+  <h2>Sem</h2>
+  <div class="team">South</div>
 
-        <small>SEASON 1</small>
-
-        <h1>Players</h1>
-
-        <p>
-            Bekijk de spelers, teams en statistieken van de SMP.
-        </p>
-
+  <div class="stats">
+    <div class="stat">
+      <strong>15</strong>
+      <span>Kills</span>
     </div>
 
+    <div class="stat">
+      <strong>7</strong>
+      <span>Deaths</span>
+    </div>
+  </div>
 
-    <div class="players">
-
-
-        <div class="player">
-
-            <div class="skin">🧑</div>
-
-            <h2>Jorn</h2>
-
-            <div class="status">
-                ● ALIVE
-            </div>
-
-            <div class="stats">
-
-                <div class="stat">
-                    <strong>12</strong>
-                    <span>Kills</span>
-                </div>
-
-                <div class="stat">
-                    <strong>3</strong>
-                    <span>Deaths</span>
-                </div>
-
-            </div>
-
-            <div class="team">
-                Team: Pakt
-            </div>
-
-        </div>
+  <div class="status alive">● ALIVE</div>
+</div>
 
 
-        <div class="player">
+<div class="player" data-name="player 3" data-status="dead" data-team="solo">
+  <div class="skin">🧟</div>
 
-            <div class="skin">🧑</div>
+  <h2>Player 3</h2>
+  <div class="team">Solo</div>
 
-            <h2>Sem</h2>
-
-            <div class="status">
-                ● ALIVE
-            </div>
-
-            <div class="stats">
-
-                <div class="stat">
-                    <strong>8</strong>
-                    <span>Kills</span>
-                </div>
-
-                <div class="stat">
-                    <strong>5</strong>
-                    <span>Deaths</span>
-                </div>
-
-            </div>
-
-            <div class="team">
-                Team: Pakt
-            </div>
-
-        </div>
-
-
-        <div class="player">
-
-            <div class="skin">🧑</div>
-
-            <h2>Player 3</h2>
-
-            <div class="status">
-                ● ALIVE
-            </div>
-
-            <div class="stats">
-
-                <div class="stat">
-                    <strong>5</strong>
-                    <span>Kills</span>
-                </div>
-
-                <div class="stat">
-                    <strong>2</strong>
-                    <span>Deaths</span>
-                </div>
-
-            </div>
-
-            <div class="team">
-                Team: Unknown
-            </div>
-
-        </div>
-
-
+  <div class="stats">
+    <div class="stat">
+      <strong>14</strong>
+      <span>Kills</span>
     </div>
 
-</main>
+    <div class="stat">
+      <strong>20</strong>
+      <span>Deaths</span>
+    </div>
+  </div>
+
+  <div class="status dead">● DEAD</div>
+</div>
+
+<div id="noResults">
+  Geen spelers gevonden.
+</div>
+
+  </section>  <footer>
+    MY SMP • Season 1
+  </footer>  <script>
+
+    const search = document.getElementById("search");
+    const statusFilter = document.getElementById("statusFilter");
+    const teamFilter = document.getElementById("teamFilter");
+
+    const playerCards = document.querySelectorAll(".player");
+    const noResults = document.getElementById("noResults");
 
 
-<footer>
-    <strong>MY SMP</strong> • Season 1
-</footer>
+    function filterPlayers() {
+
+      const searchValue = search.value.toLowerCase();
+      const statusValue = statusFilter.value;
+      const teamValue = teamFilter.value;
+
+      let visiblePlayers = 0;
+
+      playerCards.forEach(player => {
+
+        const name = player.dataset.name;
+        const status = player.dataset.status;
+        const team = player.dataset.team;
+
+        const matchesSearch =
+          name.includes(searchValue);
+
+        const matchesStatus =
+          statusValue === "all" ||
+          status === statusValue;
+
+        const matchesTeam =
+          teamValue === "all" ||
+          team === teamValue;
+
+        if (
+          matchesSearch &&
+          matchesStatus &&
+          matchesTeam
+        ) {
+          player.style.display = "block";
+          visiblePlayers++;
+        } else {
+          player.style.display = "none";
+        }
+
+      });
+
+      noResults.style.display =
+        visiblePlayers === 0 ? "block" : "none";
+    }
 
 
-<script>
-    console.log("Players pagina geladen.");
-</script>
+    search.addEventListener("input", filterPlayers);
+    statusFilter.addEventListener("change", filterPlayers);
+    teamFilter.addEventListener("change", filterPlayers);
 
-</body>
+  </script></body>
 </html>
