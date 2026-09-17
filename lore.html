@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lore | MY SMP</title>
+
+    <meta name="description"
+          content="De officiële lore en geschiedenis van MY SMP Season 1.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    rgba(7, 11, 18, 0.92),
+                    rgba(7, 11, 18, 0.98)
+                ),
+                radial-gradient(
+                    circle at top,
+                    #263b52,
+                    #070b12 70%
+                );
+
+            color: white;
+            min-height: 100vh;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(7, 11, 18, 0.9);
+
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-size: 22px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .logo span {
+            color: #63d471;
+        }
+
+
+        .nav-links {
+            display: flex;
+
+            gap: 25px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+            color: #aab5c5;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-links a:hover {
+            color: #63d471;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            text-align: center;
+
+            padding: 90px 20px 60px;
+        }
+
+
+        .header small {
+            color: #63d471;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .header h1 {
+            font-size: clamp(45px, 9vw, 80px);
+
+            margin: 12px 0;
+
+            letter-spacing: -3px;
+        }
+
+
+        .header p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #8d99aa;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+
+        /* LORE CONTAINER */
+
+        .lore-container {
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding-bottom: 100px;
+        }
+
+
+        /* CHAPTER */
+
+        .chapter {
+            position: relative;
+
+            margin-bottom: 30px;
+
+            padding: 30px;
+
+            background: rgba(255,255,255,0.045);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            transition: 0.25s;
+        }
+
+
+        .chapter:hover {
+            border-color: rgba(99,212,113,0.35);
+
+            transform: translateY(-3px);
+        }
+
+
+        .chapter-number {
+            color: #63d471;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .chapter h2 {
+            font-size: 28px;
+
+            margin: 10px 0 12px;
+        }
+
+
+        .chapter p {
+            color: #929daf;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+        }
+
+
+        /* TAGS */
+
+        .tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+
+        .tag {
+            padding: 7px 11px;
+
+            border-radius: 8px;
+
+            background: rgba(99,212,113,0.08);
+
+            border: 1px solid rgba(99,212,113,0.18);
+
+            color: #79df87;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        /* CHARACTER SECTION */
+
+        .characters-title {
+            text-align: center;
+
+            margin: 80px 0 35px;
+        }
+
+
+        .characters-title small {
+            color: #63d471;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .characters-title h2 {
+            font-size: 38px;
+
+            margin-top: 8px;
+        }
+
+
+        .characters {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .character {
+            padding: 25px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.045);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 16px;
+        }
+
+
+        .character-avatar {
+            width: 75px;
+
+            height: 75px;
+
+            margin: auto auto 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #182332;
+
+            font-size: 34px;
+        }
+
+
+        .character h3 {
+            margin-bottom: 7px;
+        }
+
+
+        .character p {
+            color: #7f8b9d;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 45px 20px;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            color: #697586;
+        }
+
+
+        footer strong {
+            color: white;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .header {
+                padding-top: 65px;
+            }
+
+
+            .chapter {
+                padding: 23px;
+            }
+
+
+            .chapter h2 {
+                font-size: 24px;
+            }
+
+
+            .characters {
+                grid-template-columns: 1fr;
+            }
+
+
+            .characters-title h2 {
+                font-size: 31px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        MY<span>SMP</span>
+    </div>
+
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="players.html">
+                Players
+            </a>
+        </li>
+
+        <li>
+            <a href="timeline.html">
+                Timeline
+            </a>
+        </li>
+
+        <li>
+            <a href="lore.html">
+                Lore
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <small>
+        THE STORY OF SEASON 1
+    </small>
+
+
+    <h1>
+        SMP Lore
+    </h1>
+
+
+    <p>
+        Alles begon met een nieuwe wereld.
+        Maar naarmate de spelers sterker werden,
+        veranderden vriendschappen in allianties
+        en ontstonden de eerste conflicten.
+    </p>
+
+</header>
+
+
+
+<!-- LORE -->
+
+<main class="lore-container">
+
+
+    <!-- CHAPTER 1 -->
+
+    <article class="chapter">
+
+        <div class="chapter-number">
+            Chapter 01
+        </div>
+
+
+        <h2>
+            The Beginning
+        </h2>
+
+
+        <p>
+            Op de eerste dag betraden de spelers een volledig
+            nieuwe wereld. Iedereen begon met niets en moest
+            zelf bepalen hoe hij wilde overleven.
+
+            <br><br>
+
+            De eerste bases werden gebouwd, resources werden
+            verzameld en de eerste contacten tussen spelers
+            ontstonden.
+        </p>
+
+
+        <div class="tags">
+
+            <span class="tag">
+                SERVER OPEN
+            </span>
+
+            <span class="tag">
+                DAY 1
+            </span>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- CHAPTER 2 -->
+
+    <article class="chapter">
+
+        <div class="chapter-number">
+            Chapter 02
+        </div>
+
+
+        <h2>
+            Alliances
+        </h2>
+
+
+        <p>
+            Naarmate de wereld groter werd, begonnen spelers
+            elkaar op te zoeken.
+
+            <br><br>
+
+            Sommige spelers besloten samen te werken.
+            Teams werden gevormd en de eerste machtsblokken
+            ontstonden.
+        </p>
+
+
+        <div class="tags">
+
+            <span class="tag">
+                TEAMS
+            </span>
+
+            <span class="tag">
+                ALLIANCES
+            </span>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- CHAPTER 3 -->
+
+    <article class="chapter">
+
+        <div class="chapter-number">
+            Chapter 03
+        </div>
+
+
+        <h2>
+            The First Conflict
+        </h2>
+
+
+        <p>
+            Niet iedereen kon het met elkaar vinden.
+
+            <br><br>
+
+            Een conflict tussen verschillende spelers begon
+            langzaam groter te worden. Wat begon als een
+            kleine ruzie groeide uit tot een serieus probleem
+            binnen de SMP.
+        </p>
+
+
+        <div class="tags">
+
+            <span class="tag">
+                CONFLICT
+            </span>
+
+            <span class="tag">
+                WAR
+            </span>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- CHAPTER 4 -->
+
+    <article class="chapter">
+
+        <div class="chapter-number">
+            Chapter 04
+        </div>
+
+
+        <h2>
+            The War
+        </h2>
+
+
+        <p>
+            De verschillende partijen stonden nu tegenover
+            elkaar.
+
+            <br><br>
+
+            Bases, allianties en vertrouwen kwamen onder druk
+            te staan. De oorlog veranderde de wereld en de
+            relaties tussen de spelers.
+        </p>
+
+
+        <div class="tags">
+
+            <span class="tag">
+                WAR
+            </span>
+
+            <span class="tag">
+                BATTLE
+            </span>
+
+            <span class="tag">
+                SEASON 1
+            </span>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- CHAPTER 5 -->
+
+    <article class="chapter">
+
+        <div class="chapter-number">
+            Chapter 05
+        </div>
+
+
+        <h2>
+            The End
+        </h2>
+
+
+        <p>
+            Na alles wat er gebeurd is, komt Season 1 uiteindelijk
+            tot zijn laatste hoofdstuk.
+
+            <br><br>
+
+            De finale bepaalt hoe het verhaal eindigt en vormt
+            misschien het begin van een nieuw verhaal...
+        </p>
+
+
+        <div class="tags">
+
+            <span class="tag">
+                FINALE
+            </span>
+
+            <span class="tag">
+                END OF SEASON
+            </span>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- CHARACTERS -->
+
+    <div class="characters-title">
+
+        <small>
+            KEY PLAYERS
+        </small>
+
+        <h2>
+            Belangrijke spelers
+        </h2>
+
+    </div>
+
+
+    <div class="characters">
+
+
+        <div class="character">
+
+            <div class="character-avatar">
+                🧑
+            </div>
+
+            <h3>
+                Jorn
+            </h3>
+
+            <p>
+                Een van de belangrijkste spelers
+                binnen het verhaal van Season 1.
+            </p>
+
+        </div>
+
+
+
+        <div class="character">
+
+            <div class="character-avatar">
+                🧑
+            </div>
+
+            <h3>
+                Sem
+            </h3>
+
+            <p>
+                Een speler die een belangrijke rol
+                speelt in de gebeurtenissen van Season 1.
+            </p>
+
+        </div>
+
+
+
+        <div class="character">
+
+            <div class="character-avatar">
+                🧑
+            </div>
+
+            <h3>
+                Player 3
+            </h3>
+
+            <p>
+                Deze speler kan later worden vervangen
+                door een echte SMP-speler.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>
+        MY SMP
+    </strong>
+
+    • Season 1
+
+    <br>
+    <br>
+
+    The story continues...
+
+</footer>
+
+
+
+<script>
+
+    console.log("MY SMP Lore geladen.");
+
+</script>
+
+
+</body>
+</html>
