@@ -1,8 +1,7 @@
 <!DOCTYPE html><html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MY SMP | Season 1</title>  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>MY SMP | Season 1</title>  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -24,15 +23,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px 7%;
-      background: rgba(5, 15, 9, 0.95);
+      background: rgba(5, 15, 9, 0.96);
       border-bottom: 1px solid #183d23;
       backdrop-filter: blur(10px);
     }
 
     .logo {
+      color: #58e47b;
       font-size: 22px;
       font-weight: bold;
-      color: #58e47b;
     }
 
     nav a {
@@ -40,7 +39,6 @@
       text-decoration: none;
       margin-left: 20px;
       font-size: 14px;
-      transition: 0.2s;
     }
 
     nav a:hover {
@@ -48,7 +46,7 @@
     }
 
     .hero {
-      min-height: 78vh;
+      min-height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -56,11 +54,14 @@
       text-align: center;
       padding: 60px 20px;
       background:
-        radial-gradient(circle at center, rgba(45, 130, 67, 0.18), transparent 55%);
+        radial-gradient(
+          circle at center,
+          rgba(45, 130, 67, 0.18),
+          transparent 55%
+        );
     }
 
     .badge {
-      display: inline-block;
       padding: 8px 14px;
       border: 1px solid #315c3b;
       border-radius: 999px;
@@ -75,7 +76,6 @@
       line-height: 0.95;
       letter-spacing: -4px;
       margin-bottom: 20px;
-      text-shadow: 0 0 40px rgba(88, 228, 123, 0.15);
     }
 
     .hero p {
@@ -116,9 +116,98 @@
       transform: translateY(-2px);
     }
 
+    .server {
+      width: min(900px, 90%);
+      margin: 0 auto 60px;
+      padding: 24px;
+      background: linear-gradient(145deg, #0d1c12, #09150d);
+      border: 1px solid #1c4025;
+      border-radius: 18px;
+    }
+
+    .server-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .server-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .server-icon {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #152a1a;
+      font-size: 22px;
+    }
+
+    .server-title h2 {
+      font-size: 20px;
+    }
+
+    .server-title p {
+      color: #718075;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .online {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(88, 228, 123, 0.1);
+      color: #58e47b;
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #58e47b;
+      box-shadow: 0 0 10px #58e47b;
+    }
+
+    .server-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .server-box {
+      padding: 16px;
+      background: #08130c;
+      border-radius: 12px;
+    }
+
+    .server-box span {
+      display: block;
+      color: #718075;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .server-box strong {
+      font-size: 14px;
+      word-break: break-word;
+    }
+
     .stats {
       width: min(1000px, 90%);
-      margin: -10px auto 60px;
+      margin: 0 auto 60px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
@@ -279,6 +368,15 @@
         white-space: nowrap;
       }
 
+      .server-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .server-info {
+        grid-template-columns: 1fr;
+      }
+
       .stats {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -291,7 +389,7 @@
     @media (max-width: 500px) {
 
       .hero {
-        min-height: 70vh;
+        min-height: 65vh;
       }
 
       .hero h1 {
@@ -314,6 +412,10 @@
       .stat strong {
         font-size: 24px;
       }
+
+      .server {
+        width: 92%;
+      }
     }
   </style></head><body>  <nav><div class="logo">MY SMP</div>
 
@@ -327,7 +429,9 @@
 
   </nav>  <main><section class="hero">
 
-  <div class="badge">SEASON 1 • SURVIVAL • COMMUNITY</div>
+  <div class="badge">
+    SEASON 1 • SURVIVAL • COMMUNITY
+  </div>
 
   <h1>MY SMP</h1>
 
@@ -338,6 +442,7 @@
   </p>
 
   <div class="buttons">
+
     <a class="btn primary" href="timeline.html">
       Bekijk Timeline
     </a>
@@ -345,6 +450,54 @@
     <a class="btn secondary" href="players.html">
       Bekijk Players
     </a>
+
+  </div>
+
+</section>
+
+
+<section class="server">
+
+  <div class="server-top">
+
+    <div class="server-title">
+
+      <div class="server-icon">
+        ⛏️
+      </div>
+
+      <div>
+        <h2>MY SMP Server</h2>
+        <p>Java & Bedrock</p>
+      </div>
+
+    </div>
+
+    <div class="online">
+      <div class="online-dot"></div>
+      ONLINE
+    </div>
+
+  </div>
+
+
+  <div class="server-info">
+
+    <div class="server-box">
+      <span>SERVER IP</span>
+      <strong>play.mysmp.nl</strong>
+    </div>
+
+    <div class="server-box">
+      <span>VERSION</span>
+      <strong>1.21.x</strong>
+    </div>
+
+    <div class="server-box">
+      <span>PLAYERS ONLINE</span>
+      <strong>8 / 50</strong>
+    </div>
+
   </div>
 
 </section>
@@ -378,37 +531,57 @@
 <section class="section">
 
   <div class="section-title">
+
     <h2>Explore the SMP</h2>
-    <p>Alles wat je over Season 1 wilt weten.</p>
+
+    <p>
+      Alles wat je over Season 1 wilt weten.
+    </p>
+
   </div>
+
 
   <div class="cards">
 
     <a class="card" href="players.html">
+
       <div class="icon">👥</div>
+
       <h3>Players</h3>
+
       <p>
         Bekijk spelers, teams, kills, deaths
         en hun huidige status.
       </p>
+
     </a>
 
+
     <a class="card" href="timeline.html">
+
       <div class="icon">⏳</div>
+
       <h3>Timeline</h3>
+
       <p>
         Ontdek alle belangrijke gebeurtenissen
         van Season 1.
       </p>
+
     </a>
 
+
     <a class="card" href="lore.html">
+
       <div class="icon">📖</div>
+
       <h3>Lore</h3>
+
       <p>
         Lees het verhaal achter de SMP,
         conflicten en belangrijke momenten.
       </p>
+
     </a>
 
   </div>
@@ -419,9 +592,15 @@
 <section class="section">
 
   <div class="section-title">
+
     <h2>Season 1 Timeline</h2>
-    <p>Een snelle blik op de belangrijkste momenten.</p>
+
+    <p>
+      Een snelle blik op de belangrijkste momenten.
+    </p>
+
   </div>
+
 
   <div class="timeline-preview">
 
@@ -466,6 +645,6 @@
   </main>  <footer>
     MY SMP • Season 1 • Survival
   </footer>  <script>
-    console.log("MY SMP website loaded successfully.");
+    console.log("MY SMP server dashboard loaded.");
   </script></body>
 </html>
