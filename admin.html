@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Admin Panel | MY SMP</title>  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #07110b;
+      color: white;
+      min-height: 100vh;
+    }
+
+    nav {
+      padding: 16px 7%;
+      background: #050f09;
+      border-bottom: 1px solid #183d23;
+    }
+
+    .logo {
+      color: #58e47b;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 50px auto;
+    }
+
+    .header {
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: clamp(38px, 8vw, 65px);
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #87978c;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .panel {
+      background: #0d1c12;
+      border: 1px solid #1c4025;
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    .panel h2 {
+      margin-bottom: 8px;
+    }
+
+    .panel p {
+      color: #87978c;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: #58e47b;
+      color: #061009;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .danger {
+      background: #351719;
+      color: #ff7777;
+      border: 1px solid #5b272b;
+    }
+
+    .status {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #08130c;
+      color: #58e47b;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin-top: 35px;
+      }
+    }
+  </style></head><body>  <nav>
+    <div class="logo">MY SMP • ADMIN</div>
+  </nav>  <main class="container"><div class="header">
+  <h1>ADMIN PANEL</h1>
+  <p>
+    Beheer alles van je MY SMP website vanuit één plek.
+  </p>
+</div>
+
+
+<div class="grid">
+
+
+  <div class="panel">
+
+    <h2>👥 Players</h2>
+
+    <p>
+      Spelers toevoegen, verwijderen en hun
+      statistieken aanpassen.
+    </p>
+
+    <button onclick="openSection('players')">
+      Players beheren
+    </button>
+
+  </div>
+
+
+  <div class="panel">
+
+    <h2>⏳ Timeline</h2>
+
+    <p>
+      Timeline-events toevoegen, aanpassen
+      of verwijderen.
+    </p>
+
+    <button onclick="openSection('timeline')">
+      Timeline beheren
+    </button>
+
+  </div>
+
+
+  <div class="panel">
+
+    <h2>📖 Lore</h2>
+
+    <p>
+      Hoofdstukken en verhalen van de SMP
+      aanpassen.
+    </p>
+
+    <button onclick="openSection('lore')">
+      Lore beheren
+    </button>
+
+  </div>
+
+
+  <div class="panel">
+
+    <h2>🗺️ Map</h2>
+
+    <p>
+      Bases, spawn en andere belangrijke
+      locaties aanpassen.
+    </p>
+
+    <button onclick="openSection('map')">
+      Map beheren
+    </button>
+
+  </div>
+
+
+  <div class="panel">
+
+    <h2>🌐 Website</h2>
+
+    <p>
+      SMP-naam, seizoen, server IP,
+      versie en algemene informatie.
+    </p>
+
+    <button onclick="openSection('website')">
+      Website beheren
+    </button>
+
+  </div>
+
+
+  <div class="panel">
+
+    <h2>📊 Statistics</h2>
+
+    <p>
+      De cijfers op de homepage aanpassen.
+    </p>
+
+    <button onclick="openSection('stats')">
+      Statistieken beheren
+    </button>
+
+  </div>
+
+
+</div>
+
+
+<div class="status" id="status">
+  Deze functie bouwen we in de volgende stap.
+</div>
+
+  </main>  <script>
+
+    function openSection(section) {
+
+      const status = document.getElementById("status");
+
+      const names = {
+        players: "Players",
+        timeline: "Timeline",
+        lore: "Lore",
+        map: "Map",
+        website: "Website",
+        stats: "Statistics"
+      };
+
+      status.textContent =
+        names[section] +
+        " editor wordt in de volgende stap toegevoegd.";
+
+      status.style.display = "block";
+
+    }
+
+  </script></body>
+</html>
