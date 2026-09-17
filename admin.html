@@ -1,252 +1,786 @@
 <!DOCTYPE html><html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Admin Panel | MY SMP</title>  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MY SMP | Admin</title><style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #07110b;
-      color: white;
-      min-height: 100vh;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:#06100a;
+  color:white;
+  min-height:100vh;
+}
 
-    nav {
-      padding: 16px 7%;
-      background: #050f09;
-      border-bottom: 1px solid #183d23;
-    }
+nav{
+  height:65px;
+  display:flex;
+  align-items:center;
+  padding:0 6%;
+  background:#050b07;
+  border-bottom:1px solid #193b22;
+}
 
-    .logo {
-      color: #58e47b;
-      font-size: 22px;
-      font-weight: bold;
-    }
+.logo{
+  color:#58e47b;
+  font-size:21px;
+  font-weight:800;
+}
 
-    .container {
-      width: min(1100px, 92%);
-      margin: 50px auto;
-    }
+.container{
+  width:min(1150px,92%);
+  margin:35px auto;
+}
 
-    .header {
-      margin-bottom: 30px;
-    }
+h1{
+  font-size:42px;
+  margin-bottom:8px;
+}
 
-    .header h1 {
-      font-size: clamp(38px, 8vw, 65px);
-      margin-bottom: 8px;
-    }
+.subtitle{
+  color:#84958a;
+  margin-bottom:30px;
+}
 
-    .header p {
-      color: #87978c;
-    }
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:25px;
+  padding-bottom:5px;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
+.tabs button{
+  flex-shrink:0;
+  padding:12px 18px;
+  border-radius:10px;
+  border:1px solid #234b2d;
+  background:#0c1b11;
+  color:white;
+  cursor:pointer;
+}
 
-    .panel {
-      background: #0d1c12;
-      border: 1px solid #1c4025;
-      border-radius: 18px;
-      padding: 25px;
-    }
+.tabs button.active{
+  background:#58e47b;
+  color:#06100a;
+}
 
-    .panel h2 {
-      margin-bottom: 8px;
-    }
+.section{
+  display:none;
+}
 
-    .panel p {
-      color: #87978c;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
+.section.active{
+  display:block;
+}
 
-    button {
-      width: 100%;
-      padding: 13px;
-      border: none;
-      border-radius: 10px;
-      background: #58e47b;
-      color: #061009;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.card{
+  background:#0c1b11;
+  border:1px solid #1b3d24;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:18px;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-    }
+.card h2{
+  margin-bottom:18px;
+}
 
-    .danger {
-      background: #351719;
-      color: #ff7777;
-      border: 1px solid #5b272b;
-    }
+label{
+  display:block;
+  color:#aab8ae;
+  font-size:14px;
+  margin-bottom:7px;
+}
 
-    .status {
-      margin-top: 25px;
-      padding: 15px;
-      border-radius: 10px;
-      background: #08130c;
-      color: #58e47b;
-      text-align: center;
-      display: none;
-    }
+input,
+textarea,
+select{
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  border:1px solid #31583a;
+  background:#07110b;
+  color:white;
+  outline:none;
+  margin-bottom:15px;
+}
 
-    @media (max-width: 700px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
 
-      .container {
-        margin-top: 35px;
-      }
-    }
-  </style></head><body>  <nav>
-    <div class="logo">MY SMP • ADMIN</div>
-  </nav>  <main class="container"><div class="header">
-  <h1>ADMIN PANEL</h1>
-  <p>
-    Beheer alles van je MY SMP website vanuit één plek.
-  </p>
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#58e47b;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+}
+
+.save{
+  background:#58e47b;
+  color:#06100a;
+  padding:13px 20px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.delete{
+  background:#351719;
+  color:#ff7777;
+  border:1px solid #5b272b;
+  padding:10px 15px;
+  border-radius:8px;
+}
+
+.add{
+  background:#142c1a;
+  color:#58e47b;
+  border:1px solid #315f3c;
+  padding:11px 16px;
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+.item{
+  background:#07110b;
+  border:1px solid #203d27;
+  border-radius:12px;
+  padding:17px;
+  margin-bottom:12px;
+}
+
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.item-title{
+  font-weight:bold;
+  font-size:17px;
+}
+
+.success{
+  display:none;
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#58e47b;
+  color:#06100a;
+  padding:14px 18px;
+  border-radius:10px;
+  font-weight:bold;
+  z-index:99;
+}
+
+.warning{
+  padding:14px;
+  border-radius:10px;
+  background:#241f0b;
+  border:1px solid #63551d;
+  color:#e5d77a;
+  margin-bottom:20px;
+  line-height:1.5;
+}
+
+@media(max-width:650px){
+  h1{
+    font-size:32px;
+  }
+
+  .container{
+    margin-top:25px;
+  }
+
+  .item-top{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+</style></head><body><nav>
+  <div class="logo">MY SMP • ADMIN</div>
+</nav><div class="container"><h1>Admin Panel</h1>
+<p class="subtitle">
+Beheer de gegevens van je SMP.
+</p><div class="warning">
+⚠️ Dit is momenteel de lokale versie. Je gegevens worden opgeslagen in deze browser.
+In een volgende stap maken we een echte beveiligde online opslag.
+</div><div class="tabs"><button class="active" onclick="showSection('players',this)">
+👥 Players
+</button><button onclick="showSection('timeline',this)">
+⏳ Timeline
+</button><button onclick="showSection('lore',this)">
+📖 Lore
+</button><button onclick="showSection('map',this)">
+🗺️ Map
+</button><button onclick="showSection('website',this)">
+🌐 Website
+</button><button onclick="showSection('stats',this)">
+📊 Stats
+</button></div><!-- PLAYERS --><section id="players" class="section active"><div class="card"><h2>Players</h2><button class="add" onclick="addPlayer()">
++ Speler toevoegen
+</button><div id="playersList"></div></div></section><!-- TIMELINE --><section id="timeline" class="section"><div class="card"><h2>Timeline</h2><button class="add" onclick="addEvent()">
++ Event toevoegen
+</button><div id="timelineList"></div></div></section><!-- LORE --><section id="lore" class="section"><div class="card"><h2>Lore</h2><button class="add" onclick="addLore()">
++ Lore hoofdstuk toevoegen
+</button><div id="loreList"></div></div></section><!-- MAP --><section id="map" class="section"><div class="card"><h2>Map locaties</h2><button class="add" onclick="addLocation()">
++ Locatie toevoegen
+</button><div id="mapList"></div></div></section><!-- WEBSITE --><section id="website" class="section"><div class="card"><h2>Website instellingen</h2><label>SMP naam</label>
+<input id="siteName">
+
+<label>Seizoen</label>
+<input id="season">
+
+<label>Server IP</label>
+<input id="serverIP">
+
+<label>Minecraft versie</label>
+<input id="version">
+
+<label>Server status</label>
+
+<select id="serverStatus">
+<option>ONLINE</option>
+<option>OFFLINE</option>
+<option>MAINTENANCE</option>
+</select><br><button class="save" onclick="saveWebsite()">
+Opslaan
+</button></div></section><!-- STATS --><section id="stats" class="section"><div class="card"><h2>Homepage statistieken</h2><label>Spelers</label>
+<input type="number" id="statPlayers">
+
+<label>Wars</label>
+<input type="number" id="statWars">
+
+<label>Days</label>
+<input type="number" id="statDays">
+
+<label>Events</label>
+<input type="number" id="statEvents">
+
+<br><button class="save" onclick="saveStats()">
+Statistieken opslaan
+</button></div></section></div><div class="success" id="success">
+✓ Opgeslagen
+</div><script>
+
+let data = JSON.parse(localStorage.getItem("mysmpData")) || {
+
+players:[
+{
+name:"Jorn",
+kills:12,
+deaths:2,
+team:"North",
+status:"Alive"
+},
+{
+name:"Sem",
+kills:8,
+deaths:4,
+team:"South",
+status:"Alive"
+}
+],
+
+timeline:[
+{
+title:"Server Open",
+date:"1 JULI",
+description:"De SMP gaat officieel open."
+},
+{
+title:"Nether Open",
+date:"5 JULI",
+description:"De Nether wordt geopend."
+},
+{
+title:"End Open",
+date:"12 JULI",
+description:"De End wordt geopend."
+}
+],
+
+lore:[
+{
+title:"The Beginning",
+text:"De spelers komen aan op de nieuwe wereld en beginnen hun avontuur."
+}
+],
+
+map:[
+{
+name:"Spawn",
+type:"Spawn",
+description:"Het centrale spawngebied."
+},
+{
+name:"Jorn Base",
+type:"Base",
+description:"De basis van Jorn."
+}
+],
+
+website:{
+name:"MY SMP",
+season:"Season 1",
+serverIP:"play.mysmp.nl",
+version:"1.21.x",
+status:"ONLINE"
+},
+
+stats:{
+players:8,
+wars:2,
+days:24,
+events:5
+}
+
+};
+
+
+function saveData(){
+
+localStorage.setItem(
+"mysmpData",
+JSON.stringify(data)
+);
+
+showSuccess();
+
+}
+
+
+function showSuccess(){
+
+const box=document.getElementById("success");
+
+box.style.display="block";
+
+setTimeout(()=>{
+box.style.display="none";
+},1800);
+
+}
+
+
+function showSection(id,button){
+
+document.querySelectorAll(".section").forEach(section=>{
+section.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll(".tabs button").forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+function renderPlayers(){
+
+const container=document.getElementById("playersList");
+
+container.innerHTML="";
+
+data.players.forEach((player,index)=>{
+
+container.innerHTML+=`
+
+<div class="item">
+
+<div class="item-top">
+<div class="item-title">
+${escapeHTML(player.name)}
 </div>
 
-
-<div class="grid">
-
-
-  <div class="panel">
-
-    <h2>👥 Players</h2>
-
-    <p>
-      Spelers toevoegen, verwijderen en hun
-      statistieken aanpassen.
-    </p>
-
-    <button onclick="openSection('players')">
-      Players beheren
-    </button>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h2>⏳ Timeline</h2>
-
-    <p>
-      Timeline-events toevoegen, aanpassen
-      of verwijderen.
-    </p>
-
-    <button onclick="openSection('timeline')">
-      Timeline beheren
-    </button>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h2>📖 Lore</h2>
-
-    <p>
-      Hoofdstukken en verhalen van de SMP
-      aanpassen.
-    </p>
-
-    <button onclick="openSection('lore')">
-      Lore beheren
-    </button>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h2>🗺️ Map</h2>
-
-    <p>
-      Bases, spawn en andere belangrijke
-      locaties aanpassen.
-    </p>
-
-    <button onclick="openSection('map')">
-      Map beheren
-    </button>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h2>🌐 Website</h2>
-
-    <p>
-      SMP-naam, seizoen, server IP,
-      versie en algemene informatie.
-    </p>
-
-    <button onclick="openSection('website')">
-      Website beheren
-    </button>
-
-  </div>
-
-
-  <div class="panel">
-
-    <h2>📊 Statistics</h2>
-
-    <p>
-      De cijfers op de homepage aanpassen.
-    </p>
-
-    <button onclick="openSection('stats')">
-      Statistieken beheren
-    </button>
-
-  </div>
-
+<button class="delete"
+onclick="deletePlayer(${index})">
+Verwijderen
+</button>
 
 </div>
 
+<label>Naam</label>
+<input
+value="${escapeAttr(player.name)}"
+oninput="data.players[${index}].name=this.value"
+>
 
-<div class="status" id="status">
-  Deze functie bouwen we in de volgende stap.
+<label>Kills</label>
+<input
+type="number"
+value="${player.kills}"
+oninput="data.players[${index}].kills=Number(this.value)"
+>
+
+<label>Deaths</label>
+<input
+type="number"
+value="${player.deaths}"
+oninput="data.players[${index}].deaths=Number(this.value)"
+>
+
+<label>Team</label>
+<select
+onchange="data.players[${index}].team=this.value">
+
+<option ${player.team==="North"?"selected":""}>North</option>
+<option ${player.team==="South"?"selected":""}>South</option>
+<option ${player.team==="Solo"?"selected":""}>Solo</option>
+
+</select>
+
+<label>Status</label>
+<select
+onchange="data.players[${index}].status=this.value">
+
+<option ${player.status==="Alive"?"selected":""}>Alive</option>
+<option ${player.status==="Dead"?"selected":""}>Dead</option>
+
+</select>
+
+<button class="save"
+onclick="saveData();renderPlayers()">
+Opslaan
+</button>
+
 </div>
 
-  </main>  <script>
+`;
 
-    function openSection(section) {
+});
 
-      const status = document.getElementById("status");
+}
 
-      const names = {
-        players: "Players",
-        timeline: "Timeline",
-        lore: "Lore",
-        map: "Map",
-        website: "Website",
-        stats: "Statistics"
-      };
 
-      status.textContent =
-        names[section] +
-        " editor wordt in de volgende stap toegevoegd.";
+function addPlayer(){
 
-      status.style.display = "block";
+data.players.push({
+name:"Nieuwe speler",
+kills:0,
+deaths:0,
+team:"Solo",
+status:"Alive"
+});
 
-    }
+saveData();
+renderPlayers();
 
-  </script></body>
+}
+
+
+function deletePlayer(index){
+
+if(confirm("Deze speler verwijderen?")){
+
+data.players.splice(index,1);
+
+saveData();
+renderPlayers();
+
+}
+
+}
+
+
+function renderTimeline(){
+
+const container=document.getElementById("timelineList");
+
+container.innerHTML="";
+
+data.timeline.forEach((event,index)=>{
+
+container.innerHTML+=`
+
+<div class="item">
+
+<div class="item-top">
+
+<div class="item-title">
+${escapeHTML(event.title)}
+</div>
+
+<button class="delete"
+onclick="deleteEvent(${index})">
+Verwijderen
+</button>
+
+</div>
+
+<label>Titel</label>
+
+<input
+value="${escapeAttr(event.title)}"
+oninput="data.timeline[${index}].title=this.value"
+>
+
+<label>Datum</label>
+
+<input
+value="${escapeAttr(event.date)}"
+oninput="data.timeline[${index}].date=this.value"
+>
+
+<label>Beschrijving</label>
+
+<textarea
+oninput="data.timeline[${index}].description=this.value"
+>${escapeHTML(event.description)}</textarea><button class="save"
+onclick="saveData();renderTimeline()">
+Opslaan
+</button>
+
+</div>`;
+
+});
+
+}
+
+function addEvent(){
+
+data.timeline.push({
+title:"Nieuw event",
+date:"DATUM",
+description:"Beschrijving van het event."
+});
+
+saveData();
+renderTimeline();
+
+}
+
+function deleteEvent(index){
+
+if(confirm("Dit event verwijderen?")){
+
+data.timeline.splice(index,1);
+
+saveData();
+renderTimeline();
+
+}
+
+}
+
+function renderLore(){
+
+const container=document.getElementById("loreList");
+
+container.innerHTML="";
+
+data.lore.forEach((chapter,index)=>{
+
+container.innerHTML+=`
+
+<div class="item"><div class="item-top"><div class="item-title">
+${escapeHTML(chapter.title)}
+</div><button class="delete"
+onclick="deleteLore(${index})">
+Verwijderen
+</button>
+
+</div><label>Titel</label>
+
+<input
+value="${escapeAttr(chapter.title)}"
+oninput="data.lore[${index}].title=this.value"
+
+«»
+
+<label>Verhaal</label>
+
+<textarea
+oninput="data.lore[${index}].text=this.value"
+>${escapeHTML(chapter.text)}</textarea><button class="save"
+onclick="saveData();renderLore()">
+Opslaan
+</button>
+
+</div>`;
+
+});
+
+}
+
+function addLore(){
+
+data.lore.push({
+title:"Nieuw hoofdstuk",
+text:"Schrijf hier de lore."
+});
+
+saveData();
+renderLore();
+
+}
+
+function deleteLore(index){
+
+if(confirm("Dit hoofdstuk verwijderen?")){
+
+data.lore.splice(index,1);
+
+saveData();
+renderLore();
+
+}
+
+}
+
+function renderMap(){
+
+const container=document.getElementById("mapList");
+
+container.innerHTML="";
+
+data.map.forEach((location,index)=>{
+
+container.innerHTML+=`
+
+<div class="item"><div class="item-top"><div class="item-title">
+${escapeHTML(location.name)}
+</div><button class="delete"
+onclick="deleteLocation(${index})">
+Verwijderen
+</button>
+
+</div><label>Naam</label>
+
+<input
+value="${escapeAttr(location.name)}"
+oninput="data.map[${index}].name=this.value"
+
+«»
+
+<label>Type</label>
+
+<input
+value="${escapeAttr(location.type)}"
+oninput="data.map[${index}].type=this.value"
+
+«»
+
+<label>Beschrijving</label>
+
+<textarea
+oninput="data.map[${index}].description=this.value"
+>${escapeHTML(location.description)}</textarea><button class="save"
+onclick="saveData();renderMap()">
+Opslaan
+</button>
+
+</div>`;
+
+});
+
+}
+
+function addLocation(){
+
+data.map.push({
+name:"Nieuwe locatie",
+type:"Location",
+description:"Beschrijving van de locatie."
+});
+
+saveData();
+renderMap();
+
+}
+
+function deleteLocation(index){
+
+if(confirm("Deze locatie verwijderen?")){
+
+data.map.splice(index,1);
+
+saveData();
+renderMap();
+
+}
+
+}
+
+function loadWebsite(){
+
+document.getElementById("siteName").value=data.website.name;
+document.getElementById("season").value=data.website.season;
+document.getElementById("serverIP").value=data.website.serverIP;
+document.getElementById("version").value=data.website.version;
+document.getElementById("serverStatus").value=data.website.status;
+
+}
+
+function saveWebsite(){
+
+data.website.name=document.getElementById("siteName").value;
+data.website.season=document.getElementById("season").value;
+data.website.serverIP=document.getElementById("serverIP").value;
+data.website.version=document.getElementById("version").value;
+data.website.status=document.getElementById("serverStatus").value;
+
+saveData();
+
+}
+
+function loadStats(){
+
+document.getElementById("statPlayers").value=data.stats.players;
+document.getElementById("statWars").value=data.stats.wars;
+document.getElementById("statDays").value=data.stats.days;
+document.getElementById("statEvents").value=data.stats.events;
+
+}
+
+function saveStats(){
+
+data.stats.players=Number(document.getElementById("statPlayers").value);
+data.stats.wars=Number(document.getElementById("statWars").value);
+data.stats.days=Number(document.getElementById("statDays").value);
+data.stats.events=Number(document.getElementById("statEvents").value);
+
+saveData();
+
+}
+
+function escapeHTML(value){
+
+return String(value)
+.replaceAll("&","&")
+.replaceAll("<","<")
+.replaceAll(">",">")
+.replaceAll('"',""")
+.replaceAll("'","'");
+
+}
+
+function escapeAttr(value){
+
+return escapeHTML(value);
+
+}
+
+renderPlayers();
+renderTimeline();
+renderLore();
+renderMap();
+loadWebsite();
+loadStats();
+
+</script></body>
 </html>
