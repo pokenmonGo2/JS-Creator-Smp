@@ -1,721 +1,471 @@
-<!DOCTYPE html>
-<html lang="nl">
+<!DOCTYPE html><html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>MY SMP | Season 1</title>
-
-    <meta name="description"
-          content="De officiële website van MY SMP. Ontdek de spelers, timeline en lore van Season 1.">
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                linear-gradient(rgba(7,11,18,0.88), rgba(7,11,18,0.98)),
-                radial-gradient(circle at top, #263b52, #070b12 70%);
-            color: white;
-            min-height: 100vh;
-        }
-
-
-        /* NAVBAR */
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 7%;
-
-            background: rgba(7,11,18,0.82);
-            backdrop-filter: blur(14px);
-
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-
-            z-index: 1000;
-        }
-
-
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-
-        .logo span {
-            color: #63d471;
-        }
-
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-
-        .nav-links a {
-            color: #aab5c5;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-
-            transition: 0.2s;
-        }
-
-
-        .nav-links a:hover {
-            color: #63d471;
-        }
-
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 110px 20px 70px;
-        }
-
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-
-        .season {
-            display: inline-block;
-
-            padding: 8px 16px;
-
-            border: 1px solid rgba(99,212,113,0.4);
-            border-radius: 999px;
-
-            background: rgba(99,212,113,0.08);
-
-            color: #7ee889;
-
-            font-size: 13px;
-            font-weight: 800;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 22px;
-        }
-
-
-        .hero h1 {
-            font-size: clamp(55px, 12vw, 125px);
-
-            line-height: 0.9;
-
-            font-weight: 1000;
-
-            letter-spacing: -6px;
-
-            text-transform: uppercase;
-        }
-
-
-        .hero h1 span {
-            color: #63d471;
-        }
-
-
-        .hero p {
-            max-width: 650px;
-
-            margin: 28px auto;
-
-            color: #aab5c5;
-
-            font-size: 18px;
-
-            line-height: 1.7;
-        }
-
-
-        /* BUTTONS */
-
-        .buttons {
-            display: flex;
-
-            justify-content: center;
-
-            gap: 14px;
-
-            flex-wrap: wrap;
-
-            margin-top: 30px;
-        }
-
-
-        .button {
-            display: inline-block;
-
-            padding: 14px 23px;
-
-            border-radius: 10px;
-
-            text-decoration: none;
-
-            font-weight: 800;
-
-            font-size: 14px;
-
-            transition: 0.2s;
-        }
-
-
-        .button-primary {
-            background: #63d471;
-            color: #07100a;
-        }
-
-
-        .button-primary:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.08);
-        }
-
-
-        .button-secondary {
-            border: 1px solid rgba(255,255,255,0.13);
-
-            background: rgba(255,255,255,0.04);
-
-            color: white;
-        }
-
-
-        .button-secondary:hover {
-            background: rgba(255,255,255,0.08);
-        }
-
-
-        /* SECTION */
-
-        section {
-            padding: 100px 7%;
-        }
-
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-
-        .section-title small {
-            color: #63d471;
-
-            font-weight: 900;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-
-        .section-title h2 {
-            font-size: 42px;
-
-            margin-top: 10px;
-        }
-
-
-        .section-title p {
-            color: #8793a5;
-
-            margin-top: 12px;
-        }
-
-
-        /* STATS */
-
-        .stats {
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 15px;
-
-            max-width: 1100px;
-
-            margin: auto;
-        }
-
-
-        .stat {
-            padding: 28px;
-
-            text-align: center;
-
-            background: rgba(255,255,255,0.045);
-
-            border: 1px solid rgba(255,255,255,0.08);
-
-            border-radius: 16px;
-        }
-
-
-        .stat-number {
-            font-size: 34px;
-
-            font-weight: 900;
-        }
-
-
-        .stat-label {
-            margin-top: 7px;
-
-            color: #8290a3;
-
-            font-size: 13px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-        }
-
-
-        /* QUICK LINKS */
-
-        .cards {
-            max-width: 1100px;
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 18px;
-        }
-
-
-        .card {
-            padding: 30px;
-
-            border-radius: 16px;
-
-            background: rgba(255,255,255,0.045);
-
-            border: 1px solid rgba(255,255,255,0.08);
-
-            text-decoration: none;
-
-            color: white;
-
-            transition: 0.25s;
-        }
-
-
-        .card:hover {
-            transform: translateY(-5px);
-
-            border-color: rgba(99,212,113,0.5);
-
-            background: rgba(99,212,113,0.06);
-        }
-
-
-        .card-icon {
-            font-size: 30px;
-
-            margin-bottom: 15px;
-        }
-
-
-        .card h3 {
-            font-size: 21px;
-
-            margin-bottom: 9px;
-        }
-
-
-        .card p {
-            color: #8d99aa;
-
-            line-height: 1.6;
-
-            font-size: 14px;
-        }
-
-
-        /* FOOTER */
-
-        footer {
-            padding: 45px 20px;
-
-            text-align: center;
-
-            border-top: 1px solid rgba(255,255,255,0.08);
-
-            color: #697586;
-        }
-
-
-        footer strong {
-            color: white;
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 750px) {
-
-            .navbar {
-                padding: 0 20px;
-            }
-
-
-            .nav-links {
-                display: none;
-            }
-
-
-            section {
-                padding: 75px 20px;
-            }
-
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-
-            .hero h1 {
-                letter-spacing: -4px;
-            }
-
-
-            .hero p {
-                font-size: 16px;
-            }
-
-
-            .section-title h2 {
-                font-size: 32px;
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-    <div class="logo">
-        MY<span>SMP</span>
-    </div>
-
-
-    <ul class="nav-links">
-
-        <li>
-            <a href="index.html">
-                Home
-            </a>
-        </li>
-
-        <li>
-            <a href="players.html">
-                Players
-            </a>
-        </li>
-
-        <li>
-            <a href="timeline.html">
-                Timeline
-            </a>
-        </li>
-
-    </ul>
-
-</nav>
-
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-
-        <div class="season">
-            SEASON 1 • SURVIVAL • COMMUNITY
-        </div>
-
-
-        <h1>
-            MY <span>SMP</span>
-        </h1>
-
-
-        <p>
-            Welkom op de officiële website van MY SMP.
-            Ontdek de spelers, gebeurtenissen, oorlogen,
-            teams en het verhaal achter Season 1.
-        </p>
-
-
-        <div class="buttons">
-
-            <a
-                class="button button-primary"
-                href="timeline.html"
-            >
-                Bekijk Timeline
-            </a>
-
-
-            <a
-                class="button button-secondary"
-                href="players.html"
-            >
-                Bekijk Players
-            </a>
-
-        </div>
-
-    </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY SMP | Season 1</title>  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #07110b;
+      color: white;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 7%;
+      background: rgba(5, 15, 9, 0.95);
+      border-bottom: 1px solid #183d23;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #58e47b;
+    }
+
+    nav a {
+      color: #b9c9be;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #58e47b;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      background:
+        radial-gradient(circle at center, rgba(45, 130, 67, 0.18), transparent 55%);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #315c3b;
+      border-radius: 999px;
+      color: #58e47b;
+      background: rgba(88, 228, 123, 0.08);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 13vw, 120px);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 40px rgba(88, 228, 123, 0.15);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #9caf9f;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 11px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .primary {
+      background: #58e47b;
+      color: #061009;
+    }
+
+    .secondary {
+      border: 1px solid #315c3b;
+      color: white;
+      background: #0d1c12;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      width: min(1000px, 90%);
+      margin: -10px auto 60px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: #0d1c12;
+      border: 1px solid #1c4025;
+      border-radius: 15px;
+      padding: 24px 15px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      color: #58e47b;
+      margin-bottom: 5px;
+    }
+
+    .stat span {
+      color: #839488;
+      font-size: 13px;
+    }
+
+    .section {
+      width: min(1100px, 90%);
+      margin: 0 auto 70px;
+    }
+
+    .section-title {
+      margin-bottom: 22px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .section-title p {
+      color: #829286;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(145deg, #0d1c12, #09150d);
+      border: 1px solid #1c4025;
+      border-radius: 18px;
+      padding: 25px;
+      min-height: 170px;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #58e47b;
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #839488;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .timeline-preview {
+      background: #0d1c12;
+      border: 1px solid #1c4025;
+      border-radius: 18px;
+      padding: 25px;
+      overflow-x: auto;
+    }
+
+    .line {
+      display: flex;
+      min-width: 700px;
+      align-items: center;
+    }
+
+    .event {
+      flex: 1;
+      position: relative;
+      text-align: center;
+    }
+
+    .event:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: #315c3b;
+      z-index: 0;
+    }
+
+    .dot {
+      width: 26px;
+      height: 26px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: #58e47b;
+      border: 5px solid #102417;
+      position: relative;
+      z-index: 1;
+    }
+
+    .event strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .event span {
+      color: #718075;
+      font-size: 11px;
+    }
+
+    footer {
+      border-top: 1px solid #183d23;
+      padding: 30px 20px;
+      text-align: center;
+      color: #718075;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      nav div:last-child {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+      }
+
+      nav a {
+        margin-left: 5px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .hero {
+        min-height: 70vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .stats {
+        width: 92%;
+        gap: 9px;
+      }
+
+      .stat {
+        padding: 18px 10px;
+      }
+
+      .stat strong {
+        font-size: 24px;
+      }
+    }
+  </style></head><body>  <nav><div class="logo">MY SMP</div>
+
+<div>
+  <a href="index.html">Home</a>
+  <a href="players.html">Players</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="lore.html">Lore</a>
+  <a href="map.html">Map</a>
+</div>
+
+  </nav>  <main><section class="hero">
+
+  <div class="badge">SEASON 1 • SURVIVAL • COMMUNITY</div>
+
+  <h1>MY SMP</h1>
+
+  <p>
+    Welkom op de officiële website van de SMP.
+    Bekijk spelers, ontdek de geschiedenis,
+    volg de timeline en ontdek de wereld.
+  </p>
+
+  <div class="buttons">
+    <a class="btn primary" href="timeline.html">
+      Bekijk Timeline
+    </a>
+
+    <a class="btn secondary" href="players.html">
+      Bekijk Players
+    </a>
+  </div>
 
 </section>
 
 
+<section class="stats">
 
-<!-- STATISTICS -->
+  <div class="stat">
+    <strong>12</strong>
+    <span>Players</span>
+  </div>
 
-<section>
+  <div class="stat">
+    <strong>47</strong>
+    <span>Kills</span>
+  </div>
 
-    <div class="section-title">
+  <div class="stat">
+    <strong>31</strong>
+    <span>Deaths</span>
+  </div>
 
-        <small>Season 1</small>
-
-        <h2>SMP Statistics</h2>
-
-        <p>
-            De huidige statistieken van de server.
-        </p>
-
-    </div>
-
-
-    <div class="stats">
-
-
-        <div class="stat">
-
-            <div class="stat-number">
-                12
-            </div>
-
-            <div class="stat-label">
-                Players
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-number">
-                47
-            </div>
-
-            <div class="stat-label">
-                Kills
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-number">
-                31
-            </div>
-
-            <div class="stat-label">
-                Deaths
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-number">
-                18
-            </div>
-
-            <div class="stat-label">
-                Events
-            </div>
-
-        </div>
-
-
-    </div>
+  <div class="stat">
+    <strong>18</strong>
+    <span>Events</span>
+  </div>
 
 </section>
 
 
+<section class="section">
 
-<!-- QUICK LINKS -->
+  <div class="section-title">
+    <h2>Explore the SMP</h2>
+    <p>Alles wat je over Season 1 wilt weten.</p>
+  </div>
 
-<section>
+  <div class="cards">
 
-    <div class="section-title">
+    <a class="card" href="players.html">
+      <div class="icon">👥</div>
+      <h3>Players</h3>
+      <p>
+        Bekijk spelers, teams, kills, deaths
+        en hun huidige status.
+      </p>
+    </a>
 
-        <small>Explore</small>
+    <a class="card" href="timeline.html">
+      <div class="icon">⏳</div>
+      <h3>Timeline</h3>
+      <p>
+        Ontdek alle belangrijke gebeurtenissen
+        van Season 1.
+      </p>
+    </a>
 
-        <h2>Ontdek de SMP</h2>
+    <a class="card" href="lore.html">
+      <div class="icon">📖</div>
+      <h3>Lore</h3>
+      <p>
+        Lees het verhaal achter de SMP,
+        conflicten en belangrijke momenten.
+      </p>
+    </a>
 
-        <p>
-            Alles wat je moet weten over Season 1.
-        </p>
-
-    </div>
-
-
-    <div class="cards">
-
-
-        <a
-            href="timeline.html"
-            class="card"
-        >
-
-            <div class="card-icon">
-                ⏳
-            </div>
-
-            <h3>
-                Season Timeline
-            </h3>
-
-            <p>
-                Bekijk alle belangrijke gebeurtenissen
-                van Season 1.
-            </p>
-
-        </a>
-
-
-        <a
-            href="players.html"
-            class="card"
-        >
-
-            <div class="card-icon">
-                👤
-            </div>
-
-            <h3>
-                Players
-            </h3>
-
-            <p>
-                Bekijk spelers, teams, kills, deaths
-                en Alive/Dead-status.
-            </p>
-
-        </a>
-
-
-        <a
-            href="timeline.html"
-            class="card"
-        >
-
-            <div class="card-icon">
-                📖
-            </div>
-
-            <h3>
-                SMP Lore
-            </h3>
-
-            <p>
-                Het verhaal, de conflicten en de
-                belangrijkste momenten van de SMP.
-            </p>
-
-        </a>
-
-
-    </div>
+  </div>
 
 </section>
 
 
+<section class="section">
 
-<!-- FOOTER -->
+  <div class="section-title">
+    <h2>Season 1 Timeline</h2>
+    <p>Een snelle blik op de belangrijkste momenten.</p>
+  </div>
 
-<footer>
+  <div class="timeline-preview">
 
-    <strong>
-        MY SMP
-    </strong>
+    <div class="line">
 
-    • Season 1
+      <div class="event">
+        <div class="dot"></div>
+        <strong>Server Open</strong>
+        <span>Season 1</span>
+      </div>
 
-    <br>
-    <br>
+      <div class="event">
+        <div class="dot"></div>
+        <strong>Nether Open</strong>
+        <span>Progress</span>
+      </div>
 
-    Official SMP Website
+      <div class="event">
+        <div class="dot"></div>
+        <strong>End Open</strong>
+        <span>Progress</span>
+      </div>
 
-</footer>
+      <div class="event">
+        <div class="dot"></div>
+        <strong>First War</strong>
+        <span>Conflict</span>
+      </div>
 
+      <div class="event">
+        <div class="dot"></div>
+        <strong>Finale</strong>
+        <span>Season 1</span>
+      </div>
 
+    </div>
 
-<script>
+  </div>
 
-    console.log("MY SMP homepage geladen.");
+</section>
 
-</script>
-
-
-</body>
+  </main>  <footer>
+    MY SMP • Season 1 • Survival
+  </footer>  <script>
+    console.log("MY SMP website loaded successfully.");
+  </script></body>
 </html>
