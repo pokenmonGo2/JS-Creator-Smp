@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Players | MY SMP</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(rgba(8,12,20,0.9), rgba(8,12,20,0.97)),
+                radial-gradient(circle at top, #263b52, #080c14 70%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(8,12,20,0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #63d471;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #aab5c5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #63d471;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .header small {
+            color: #63d471;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+
+        .header p {
+            color: #8995a7;
+        }
+
+        .players {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .player {
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 25px;
+            transition: 0.2s;
+        }
+
+        .player:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99,212,113,0.4);
+        }
+
+        .skin {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 18px;
+            border-radius: 12px;
+            background: #182332;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+        }
+
+        .player h2 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #63d471;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.04);
+            padding: 12px;
+            border-radius: 9px;
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 19px;
+        }
+
+        .stat span {
+            color: #788598;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .team {
+            margin-top: 12px;
+            text-align: center;
+            color: #aab5c5;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #697586;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .container {
+                padding: 55px 0;
+            }
+
+            .header h1 {
+                font-size: 38px;
+            }
+
+            .players {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        MY<span>SMP</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="index.html#timeline">Timeline</a></li>
+    </ul>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="header">
+
+        <small>SEASON 1</small>
+
+        <h1>Players</h1>
+
+        <p>
+            Bekijk de spelers, teams en statistieken van de SMP.
+        </p>
+
+    </div>
+
+
+    <div class="players">
+
+
+        <div class="player">
+
+            <div class="skin">🧑</div>
+
+            <h2>Jorn</h2>
+
+            <div class="status">
+                ● ALIVE
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>12</strong>
+                    <span>Kills</span>
+                </div>
+
+                <div class="stat">
+                    <strong>3</strong>
+                    <span>Deaths</span>
+                </div>
+
+            </div>
+
+            <div class="team">
+                Team: Pakt
+            </div>
+
+        </div>
+
+
+        <div class="player">
+
+            <div class="skin">🧑</div>
+
+            <h2>Sem</h2>
+
+            <div class="status">
+                ● ALIVE
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>8</strong>
+                    <span>Kills</span>
+                </div>
+
+                <div class="stat">
+                    <strong>5</strong>
+                    <span>Deaths</span>
+                </div>
+
+            </div>
+
+            <div class="team">
+                Team: Pakt
+            </div>
+
+        </div>
+
+
+        <div class="player">
+
+            <div class="skin">🧑</div>
+
+            <h2>Player 3</h2>
+
+            <div class="status">
+                ● ALIVE
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>5</strong>
+                    <span>Kills</span>
+                </div>
+
+                <div class="stat">
+                    <strong>2</strong>
+                    <span>Deaths</span>
+                </div>
+
+            </div>
+
+            <div class="team">
+                Team: Unknown
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<footer>
+    <strong>MY SMP</strong> • Season 1
+</footer>
+
+
+<script>
+    console.log("Players pagina geladen.");
+</script>
+
+</body>
+</html>
