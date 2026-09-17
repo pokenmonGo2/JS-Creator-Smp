@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MY SMP | Season 1</title>
+
+    <meta name="description" content="De officiële website van MY SMP. Bekijk de spelers, lore, gebeurtenissen en geschiedenis van Season 1.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(rgba(8, 12, 20, 0.82), rgba(8, 12, 20, 0.96)),
+                radial-gradient(circle at top, #263b52, #080c14 65%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(8, 12, 20, 0.82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #63d471;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #63d471;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 110px 20px 70px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .season {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(99,212,113,0.4);
+            border-radius: 999px;
+            background: rgba(99,212,113,0.08);
+            color: #7ee889;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 11vw, 120px);
+            line-height: 0.9;
+            font-weight: 1000;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #63d471;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 28px auto;
+            color: #aab5c5;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 23px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .button-primary {
+            background: #63d471;
+            color: #07100a;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255,255,255,0.13);
+            background: rgba(255,255,255,0.04);
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #63d471;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: #8793a5;
+            margin-top: 12px;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .stat {
+            padding: 28px;
+            text-align: center;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+        }
+
+        .stat-number {
+            font-size: 34px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .stat-label {
+            margin-top: 7px;
+            color: #8290a3;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* TIMELINE PREVIEW */
+
+        .timeline {
+            max-width: 850px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(99,212,113,0.35);
+        }
+
+        .event {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 35px;
+        }
+
+        .event-dot {
+            position: absolute;
+            left: 11px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #63d471;
+            box-shadow: 0 0 18px rgba(99,212,113,0.45);
+        }
+
+        .event-card {
+            padding: 22px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+        }
+
+        .event-date {
+            color: #63d471;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .event-card h3 {
+            margin: 8px 0;
+            font-size: 21px;
+        }
+
+        .event-card p {
+            color: #929daf;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #697586;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat {
+                padding: 20px 10px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MY<span>SMP</span></div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#stats">Stats</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+        </ul>
+    </nav>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+
+                <div class="season">
+                    SEASON 1 • SURVIVAL • COMMUNITY
+                </div>
+
+                <h1>
+                    MY <span>SMP</span>
+                </h1>
+
+                <p>
+                    Welkom op de officiële website van MY SMP.
+                    Ontdek de spelers, gebeurtenissen, oorlogen,
+                    allianties en de volledige geschiedenis van Season 1.
+                </p>
+
+                <div class="buttons">
+                    <a class="button button-primary" href="#timeline">
+                        Bekijk Season 1
+                    </a>
+
+                    <a class="button button-secondary" href="#stats">
+                        Bekijk Stats
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- STATS -->
+
+        <section id="stats">
+
+            <div class="section-title">
+                <small>Season 1</small>
+                <h2>SMP Statistics</h2>
+                <p>Een overzicht van de huidige staat van de server.</p>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Players</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">47</div>
+                    <div class="stat-label">Kills</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">31</div>
+                    <div class="stat-label">Deaths</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Events</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TIMELINE -->
+
+        <section id="timeline">
+
+            <div class="section-title">
+                <small>Season Timeline</small>
+                <h2>De geschiedenis begint hier</h2>
+                <p>Belangrijke gebeurtenissen uit Season 1.</p>
+            </div>
+
+            <div class="timeline">
+
+                <div class="event">
+
+                    <div class="event-dot"></div>
+
+                    <div class="event-card">
+                        <div class="event-date">
+                            01 JULI • DAY 1
+                        </div>
+
+                        <h3>Server Open</h3>
+
+                        <p>
+                            Season 1 begint. De spelers komen voor
+                            het eerst samen en beginnen hun eigen
+                            bases en beschavingen te bouwen.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="event">
+
+                    <div class="event-dot"></div>
+
+                    <div class="event-card">
+                        <div class="event-date">
+                            BINNENKORT
+                        </div>
+
+                        <h3>Nether Open</h3>
+
+                        <p>
+                            De Nether wordt geopend en nieuwe
+                            gebieden, grondstoffen en gevaren
+                            verschijnen op de SMP.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="event">
+
+                    <div class="event-dot"></div>
+
+                    <div class="event-card">
+                        <div class="event-date">
+                            BINNENKORT
+                        </div>
+
+                        <h3>End Open</h3>
+
+                        <p>
+                            Het End wordt geopend. Vanaf dit moment
+                            begint een nieuwe fase van Season 1.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <strong>MY SMP</strong> • Season 1
+        <br><br>
+        Made for the SMP community.
+    </footer>
+
+
+    <script>
+        console.log("MY SMP website geladen.");
+
+        // Jaar automatisch in de footer zetten als we later
+        // dynamische onderdelen toevoegen.
+        const currentYear = new Date().getFullYear();
+
+        console.log("Website year:", currentYear);
+    </script>
+
+</body>
+  </html>
